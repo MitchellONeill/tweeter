@@ -17,12 +17,11 @@ module.exports = function(db) {
   });
 
   tweets.post("/", function(req, res) {
-    // console.log("New Tweet, Body:", req.body);
+    console.log("New Tweet, Body:", req.body);
     if (!req.body.text) {
       res.status(400);
       return res.send("{'error': 'invalid request'}\n");
     }
-
     const user = req.body.user ? req.body.user : User.generateRandomUser();
     const tweet = {
       user: user,
@@ -32,10 +31,14 @@ module.exports = function(db) {
       created_at: Date.now()
     };
     db.collection("tweets").insertOne(tweet, (err, result) => {
-      res.json(result);
+      res.json(result.ops[0]);
     });
+
   });
 
   return tweets;
 
 }
+
+
+

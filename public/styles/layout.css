@@ -5,6 +5,7 @@
  */
 html {
   box-sizing: border-box;
+
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -18,8 +19,84 @@ body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+.container {
+  width: 450px;
+  margin-left: 25%;
+  background-color: white;
+  position: absolute;
+  height: 100%;
+ }
+
+.countWarn {
+  color: red;
+}
+
+#tweetHistory {
+  margin-top: 20px;
+}
+
+.oldTweet {
+  margin: 2em;
+  box-sizing: content-box;
+  border: 2px solid #eee;
+}
+
+article.oldTweet .tweetBody{
+  padding: 0 2em;
+  margin: 0;
+  position: relative;
+  height:100%;
+}
+
+article.oldTweet header{
+  width: 100%;
+  height: 40px;
+  background-color: #eee;
+}
+
+article.oldTweet footer{
+  width: 100%;
+  height: 20px;
+  border-top: 2px solid #eee;
+}
+
+header.arcHead .logo{
+  margin-left: 5px;
+  height: 38px;
+  width: 38px;
+  float: left;
+}
+
+header.arcHead .usrName {
+  margin: 0;
+  position: relative;
+  height: 100%;
+  vertical-align: top;
+  float: left;
+}
+
+header.arcHead .usrID {
+  float: right;
+}
+
+article.oldTweet:hover {
+  border: 4px solid #eee;
+ }
+
+footer .twitLogos {
+  opacity: 0;
+  width: 10px;
+  height: 10px;
+  float: right;
+}
+
+article.oldTweet:hover .twitLogos{
+  opacity: 100;
+  }
