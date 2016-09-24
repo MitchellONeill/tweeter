@@ -1,5 +1,5 @@
 
-
+//DOM on ready functions
  $(function(){
 
   loadTweets();
@@ -10,7 +10,6 @@
         method: 'GET',
         dataType: 'json',
         success: function (tweets) {
-          console.log('do we get here' + tweets)
           renderTweets(tweets);
         }
       })
@@ -31,21 +30,29 @@
     var user = $("<h3>").addClass("usrName").text(tweets.user.name);
     var userID = $("<div>").addClass("usrID").text(tweets.user.handle);
     var userLogo = $("<img>").attr("src", tweets.user.avatars.regular).addClass("logo");
-    var body = $("<p>").addClass("tweetBody").text(tweets.content.text);
-    var date = $("<span>").addClass("date").text(tweets.created_at);
-    var twitLogos = $("<img src='heart.png'>").addClass("twitLogos");
-    fullTweet.append(header);
+    var body = $("<span>").addClass("tweetBody").text(tweets.content.text);
+    var date = Date(tweets.created_at);
+    date =   date.substring(0,24)
+    var date = $("<span>").addClass("date").text(date);
+
+    var twitLogos = $("<img src='turdIcon.jpg'>").addClass("twitLogos");
     header.append(userLogo).append(user).append(userID);
+    footer.append(date).append(twitLogos);
+    fullTweet.append(header);
     fullTweet.append(body);
     fullTweet.append(footer);
-    footer.append(date).append(twitLogos);
-    console.log(fullTweet);
+    fullTweet.on('click', function() {
+      alert('Tweet, Tweet!');
+      });
     return fullTweet;
     };
 
     function sendTweet (tweetBody) {
-      if (tweetBody.length === '' || tweetBody.length > 140) {
-        alert("test message");
+      console.log('our length', tweetBody.length)
+      if (tweetBody === '') {
+        alert("Come on now, this site is for Turds not empty bowls");
+      } else if (tweetBody.length > 140) {
+        alert("Overflow!! overflow!! less turd please")
       } else {
         var data = {text: tweetBody};
         $.ajax({
@@ -59,7 +66,6 @@
         })
       }
     };
-
     //Event callers//
     $('.message').keyup(counter);
     $('.tweetForm').on("submit", function(e) {
@@ -67,6 +73,14 @@
       e.preventDefault();
       var tweetBody = $(this).find('.message').val();
       sendTweet(tweetBody);
+      $(this).closest('form').find("input[type=text], textarea").val("");
+    });
+    $('.composer').click(function(){
+      $('h2').toggle("slow");
+      $('.tweetForm').toggle("slow", function() {
+        $('.message').focus();
+        });
+
     });
 
  });

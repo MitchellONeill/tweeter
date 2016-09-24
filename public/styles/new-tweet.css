@@ -1,13 +1,17 @@
 
-.new-tweet {
-  margin: 2em;
+.newTweet {
+  margin: 1.5em;
   padding: 0 0.5em;
   background-color: #eee;
 }
 
-h2 {
+section.newTweet h2 {
+  margin-bottom: 0.5em;
   border-bottom: solid .8px;
-  text-align: bottom;
+}
+
+section.newTweet textarea {
+  height: 45px;
 }
 
 .counter {
